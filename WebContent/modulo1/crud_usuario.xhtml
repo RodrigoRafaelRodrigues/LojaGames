@@ -38,8 +38,10 @@
 		 					<h1>Criar uma Conta</h1>
 		 					<h4>O cadastro é gratuito e o programa é fácil de usar. 
 		 					Continue para criar a sua conta Purpose.</h4>
+		 					<br/>
+		 					<h:message for="formCadastro" style="color:red;"/>
 			                    <h:outputLabel value="Criar um nome de usuário"></h:outputLabel>
-			                    <p:inputText id="nome" label="Nome" required="true" requiredMessage="O Campo Nome é obrigatório.">
+			                    <p:inputText id="nome" value="#{usuarioControle.vo.nome}" label="Nome">
 			                    </p:inputText>
 			 				<p:separator/>	
 	
@@ -65,7 +67,7 @@
 			 				<p:separator/>	
 						</h:panelGrid>
 		 
-		                <p:commandButton value="Cadastrar"></p:commandButton>
+		                <p:commandButton value="Cadastrar" update="formCadastro" action="#{usuarioControle.cadastrarUsuario()}"></p:commandButton>
 		         </h:form>
 			
 		  </h:panelGrid>		
