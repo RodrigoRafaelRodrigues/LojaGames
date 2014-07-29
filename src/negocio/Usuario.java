@@ -6,17 +6,22 @@ import vo.UsuarioVO;
 import vo.excecao.UsuarioVOException;
 import dao.UsuarioDAO;
 
+
 public class Usuario {
 
 	public void save(UsuarioVO vo) throws UsuarioVOException {
-		if (vo.getNome()==null || vo.getNome().trim().equals(""))
+
+		if(vo.getNome() == null && vo.getNome().isEmpty())
 			throw new UsuarioVOException(UsuarioVOException.NOMEOBRIGATORIO);
-		if (vo.getSenha()==null || vo.getSenha().trim().equals(""))
-			throw new UsuarioVOException(UsuarioVOException.SENHAOBRIGATORIO);
-		if (vo.getEmail()==null || vo.getEmail().trim().equals(""))
+		if(vo.getNome() == null && vo.getLogin().isEmpty())
+			throw new UsuarioVOException(UsuarioVOException.LOGINOBRIGATORIO);
+		if(vo.getEmail() == null && vo.getEmail().isEmpty())
 			throw new UsuarioVOException(UsuarioVOException.EMAILOBRIGATORIO);
-		if (vo.getEmail()==null || vo.getEmail().trim().equals(""))
+		if(vo.getSenha() == null && vo.getSenha().isEmpty())
+			throw new UsuarioVOException(UsuarioVOException.SENHAOBRIGATORIO);
+		if(vo.validarEmail(vo.getEmail()))
 			throw new UsuarioVOException(UsuarioVOException.EMAILINVALIDO);
+
 		UsuarioDAO.getInstance().save(vo);
 	}
 	

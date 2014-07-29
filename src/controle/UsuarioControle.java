@@ -14,12 +14,21 @@ import vo.excecao.UsuarioVOException;
 @SessionScoped
 public class UsuarioControle {
 	
-	private UsuarioVO vo = new UsuarioVO();
-	private Usuario usuario = new Usuario();
+	private Usuario usuario;
+	private UsuarioVO vo;
 	
-	public void novo(ActionEvent evt){
+	public UsuarioControle() {
+		usuario = new Usuario();
 		vo = new UsuarioVO();
-		}
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 	public UsuarioVO getVo() {
 		return vo;
@@ -29,24 +38,21 @@ public class UsuarioControle {
 		this.vo = vo;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	
-	public void cadastrarUsuario(ActionEvent event){  
+	public void cadastrarUsuario(ActionEvent event) {
+		System.out.println("TEsteeeeeeeeeeeeeeeee");
 		try {
 			usuario.save(vo);
 			vo = new UsuarioVO();
-			FacesContext.getCurrentInstance().addMessage("formCadastro", new FacesMessage("Usuário cadastrado com Sucesso!"));
+			FacesContext.getCurrentInstance().addMessage("frmCadastro",
+					new FacesMessage("Usuário Cadstrado com sucesso!"));
 		} catch (UsuarioVOException e) {
-		    FacesContext.getCurrentInstance().addMessage("formCadastro", new FacesMessage(e.getMessage()));
+			FacesContext.getCurrentInstance().addMessage("formCadastro",
+					new FacesMessage(e.getMessage()));
 		}
-		
 	}
-	
+
+	public void excluirProduto() {
+		usuario.delete(vo);
+	}
 
 }
