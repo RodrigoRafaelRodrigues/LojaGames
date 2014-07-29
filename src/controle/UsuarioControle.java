@@ -44,9 +44,9 @@ public class UsuarioControle {
 			usuario.save(vo);
 			vo = new UsuarioVO();
 			FacesContext.getCurrentInstance().addMessage("frmCadastro",
-					new FacesMessage("Usuário Cadstrado com sucesso!"));
+					new FacesMessage("Usuário Cadastrado com sucesso!"));
 		} catch (UsuarioVOException e) {
-			FacesContext.getCurrentInstance().addMessage("formCadastro",
+			FacesContext.getCurrentInstance().addMessage("frmCadastro",
 					new FacesMessage(e.getMessage()));
 		}
 	}
